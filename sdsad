@@ -1,0 +1,24 @@
+<h1>Photos</h1>
+
+    <form action="API_PHOTOS.php" method="post">
+          <input type="text" name="a">
+        <input type="submit" value="Search photo" class="searchButton">
+    </form>
+
+    <?php
+        if(isset($_POST['search'])) {
+            $json = file_get_contents('https://www.photo.com/embed/?query='.$_POST['search'].'&client_id=RhmapuVGwXK2SESLUKMe-lCZtkKzvj8GsFG1RGco6fw');
+            $data = json_decode($json, true);
+            $results = $data['results'];
+ forEach($items as $search) {
+        if (isset($search['id']['photoId'])) {
+            $videoId = $search['id']['photoId'];
+?>
+<center><hr>
+<iframe width="750" height="500" src="https://www.photo.com/embed/<?php echo $photoId; ?>"allowfullscreen></iframe>
+</center></hr>
+<?php
+        }
+    }
+}
+?>
